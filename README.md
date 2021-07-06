@@ -13,7 +13,7 @@ Input
 Program will be executed in the following way: 
 ~$ java -jar webParser.jar
 
-Enter a website and the foll path and name of the file you want to create.
+Enter a website and the full path and name of the file you want to create.
 For Windows: C:\Documents\Newsletters\Products.json
 For Mac: /Users/user/Desktop/Products.json
 
