@@ -1,7 +1,7 @@
 package http.service;
 
-import java.net.http.HttpRequest;
+import org.jsoup.select.Elements;
 
 public interface HtmlReaderService {
-    public HttpRequest readHttp(String webPage);
+    public Elements readHttp(String url);
 }

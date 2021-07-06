@@ -1,9 +1,9 @@
 package http.service;
 
 import http.model.Product;
-import java.net.http.HttpRequest;
 import java.util.List;
+import org.jsoup.select.Elements;
 
 public interface HtmlPageParserService {
-    public List<Product> parse(HttpRequest request);
+    public List<Product> parse(Elements elements);
 }

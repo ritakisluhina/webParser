@@ -2,42 +2,25 @@ package http.service.impl;
 
 import http.model.Product;
 import http.service.HtmlPageParserService;
-import java.io.IOException;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 public class HtmlPageParserServiceImpl implements HtmlPageParserService {
-    private List<Product> products;
-    private HttpClient client = HttpClient.newHttpClient();
 
     @Override
-    public List<Product> parse(HttpRequest request) {
-        try {
-            HttpResponse<String> response = client
-                    .send(request, HttpResponse.BodyHandlers.ofString());
-            Document doc = Jsoup.parse(response.body().toString());
-            Elements elements = doc.select("a[data-test-id=\"ProductTile\"]");
-            for (Element element : elements) {
-                String brandName = element.selectFirst("[data-test-id=\"BrandName\"]").text();
-                String price = getPrice(element);
-
-                Elements colorsElements = element.select("[data-test-id=\"ColorBubble\"]");
-                List<String> colors = new ArrayList<>();
-                for (Element color : colorsElements) {
-                    colors.add(color.attr("color"));
-                }
-                String articleID = element.attr("id");
-                products.add(new Product(brandName, colors, Float.parseFloat(price)));
+    public List<Product> parse(Elements elements) {
+        List<Product> products = new ArrayList<>();
+        for (Element element : elements) {
+            String brandName = element.selectFirst("[data-test-id=\"BrandName\"]").text();
+            String price = getPrice(element);
+            Elements colorsElements = element.select("[data-test-id=\"ColorBubble\"]");
+            List<String> colors = new ArrayList<>();
+            for (Element color : colorsElements) {
+                colors.add(color.attr("color"));
             }
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException("Can't get response" + e);
+            products.add(new Product(brandName, colors, Float.parseFloat(price)));
         }
         return products;
     }
