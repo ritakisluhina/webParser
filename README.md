@@ -23,5 +23,6 @@ For Mac: /Users/user/Desktop/Products.json
 Output
 The extracted offers will be written into a JSON file.
 A short summary with the following information will be printed to stdout:
+
 • Amount of triggered HTTP requests
 • Amount of extracted products
