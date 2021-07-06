@@ -7,8 +7,8 @@ https://www.aboutyou.de/c/maenner/bekleidung-20290
 This is a simple console application.
 
 To run webParser you will need:
-* Install at least Java 11.
-* Load webParser.jar file.
+* Install at least Java 11
+* Load webParser.jar file
 
 ## Input
 Program will be executed in the following way: 
