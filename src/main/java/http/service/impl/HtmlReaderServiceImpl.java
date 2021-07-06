@@ -12,7 +12,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 public class HtmlReaderServiceImpl implements HtmlReaderService {
-    private AtomicInteger requestsCounter;
+    private AtomicInteger requestsCounter = new AtomicInteger();
 
     public HtmlReaderServiceImpl() {
     }
